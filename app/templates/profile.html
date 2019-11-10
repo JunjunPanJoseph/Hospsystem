@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form method="POST">
+    <p>Email: {{current_user.email}}</p>
+    <p>Authority: {{current_user.authority}}</p>
+    <p>Password: {{current_user.password}}</p>
+    {%if success_update == True%}
+        <p>success update personal profile!</p>
+    {%endif%}
+    {%if success_update == False%}
+        <p>update personal profile fail!</p>
+    {%endif%}
+    {%if same_password == False %}
+        <p>Old password incorrect!</p>
+    {%endif%}
+    New Password: <input type="password" name="new_password", value = "{{current_user.password}}">
+    <p>Name: {{current_user.name}}</p>
+    New name: <input type="text" name="name", value = "{{current_user.name}}">
+    <p>phone: {{current_user.phone}}</p>
+    New phone: <input type="text" name="phone", value = "{{current_user.phone}}">
+    {%if current_user.authority == "patient"%}
+        <p>cardNumber: {{current_user.cardNumber}}</p>
+    {%endif%}
+    {%if current_user.authority == "provider"%}
+        <p>providerNumber: {{current_user.providerNumber}}</p>
+        <p>type: {{current_user.type}}</p>
+    {%endif%}
+    <input type="submit" value="Submit">
+</form>
+{% endblock %}
+

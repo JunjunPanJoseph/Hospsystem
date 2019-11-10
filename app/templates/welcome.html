@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{% block head %}{% endblock %}
+	</head>
+	<body>
+		<div style="padding: 50px">
+			<h1> Welcome to Online Healthcare Appointment Management System</h1>
+			<br/>
+			{% block content %}{% endblock %}
+		<div>
+	</body>
+</html>
+<button><a href="{{url_for('login')}}">Login</a>

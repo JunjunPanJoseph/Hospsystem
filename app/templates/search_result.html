@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Searching Result</h3>
+{%if provider_data != []%}
+
+<table border="1">
+    <tr>
+        <td>Email</td><td>Name</td><td>Type</td><td>Rating</td>
+    </tr>
+
+    {% for p in provider_data %}
+        <tr>
+            <td><a href = "/providers/{{p.email}}">{{p.email}}</a></td>
+            <td>{{p.name}}</td>
+            <td>{{p.type}}</td>
+            <td>{{rating.get_rating(provider = p.email)}}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+{%endif%}
+{%if center_data != []%}
+<table border="1">
+    <tr>
+        <td>Type</td><td>Abn</td><td>Name</td><td>phone number</td><td>Location</td><td>Rating</td>
+    </tr>
+{% for c in center_data %}
+    <tr>
+        <td>{{c.type}}</td>
+        <td>{{c.Abn}}</td>
+        <td>{{c.name}}</td>
+        <td>{{c.phone}}</td>
+        <td>{{c.location}}</td>
+        <td>{{rating.get_rating(centre = c.name)}}</td>
+    </tr>
+{% endfor %}
+</table>
+
+{%endif%}
+{% endblock %}

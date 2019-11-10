@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Search</h2>
+<form class="search_form" method="POST">
+ name: <input type="text" name="name"><br>
+ <table>
+    <tr>
+        <td><input type="radio" name="type" value="name">name</td>
+        <td><input type="radio" name="type" value="suburb">suburb</td>
+        <td><input type="radio" name="type" value="service">service</td>
+        <td><input type="radio" name="type" value="provider">provider</td>
+    </tr>
+</table>
+<input type="submit" value="Submit">
+</form> 
+</br>
+<h2>List</h2>
+<table border="1">
+    <tr>
+        <td>Type</td>
+        <td>Abn</td>
+        <td>Name</td>
+        <td>phone number</td>
+        <td>Location</td>
+        <td>Rating</td>
+    </tr>
+    {% for data in LIST %}
+    <tr>
+        <td>{{data.type}}</td>
+        <td>{{data.Abn}}</td>
+        <td><a href = "/centres/{{data.name}}">{{data.name}}</a></td>
+        <td>{{data.phone}}</td>
+        <td>{{data.location}}</td>
+        <td>{{rating.get_rating(centre = data.name)}}</td>
+    </tr>
+    {% endfor %}
+    
+</table>
+
+
+{% endblock %}

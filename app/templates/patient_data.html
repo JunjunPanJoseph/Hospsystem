@@ -1,0 +1,32 @@
+{%if data != []%}
+<h1>Appointments for patient {{data[0].patient.email}}</h1>
+{%else%}
+<h1>A provider is granted access to a patient’s history only after the patient has made an appointment with the provider.</h1>
+{%endif%}
+{% extends "base.html" %}
+{% block content %}
+<h2>Current appointments</h2>
+<table border = 1>
+    <tr>
+        <td>patient email</td><td>patient name</td><td>provider email</td><td>provider name</td><td>Center</td><td>Reason</td><td>Start time</td><td>End time</td><td>Note</td><td>Med</td>
+    </tr>
+
+    {% for d in data %}
+    <tr>
+    <td>{{d.patient.email}}</td>
+    <td>{{d.patient.name}}</td>
+    <td>{{d.provider.email}}</td>
+    <td>{{d.provider.name}}</td>
+    <td>{{d.center.name}}</td>
+    <td>{{d.reason}}</td>
+    <td>{{d.start_time}}</td>
+    <td>{{d.end_time}}</td>
+    <td>{{d.note}}</td>
+    <td>{{d.med}}</td>
+    {%if d.provider.email == current_user.email and current_user.authority == "provider"%}
+    <td><a href ="/edit/{{d.patient.email}}/{{d.provider.email}}/{{d.center.name}}/{{d.start_time.strftime('%d-%m-%Y %H:%M:%S')}}/{{d.end_time.strftime('%d-%m-%Y %H:%M:%S')}}">Edit</a></td>
+    {%endif%}
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

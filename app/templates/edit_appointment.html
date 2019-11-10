@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Edit appointments</h2>
+{%if data != []%}
+{%if success == True%}
+<p>edit success</p>
+{%endif%}
+{%if success == False%}
+<p>edit fail</p>
+{%endif%}
+ <form  method="POST">
+<table border = 1>
+    <tr>
+        <td>patient name</td><td>patient email</td><td>Center</td><td>Reason</td><td>Start time</td><td>End time</td><td>Note</td><td>Med</td>
+    </tr>
+
+    {% for d in data %}
+    <tr>
+    <td><a href = "/patient/{{d.patient.email}}">{{d.patient.name}}</a></td>
+    <td>{{d.patient.email}}</td>
+    <td>{{d.center.name}}</td>
+    <td>{{d.reason}}</td>
+    <td>{{d.start_time}}</td>
+    <td>{{d.end_time}}</td>
+    <td>{{d.note}}</td>
+    <td>{{d.med}}</td>
+    </tr>
+    {% endfor %}
+    
+    New note: <input type="text" name="note", value = "{{data[0].note}}">
+    New med: <input type="text" name="med", value = "{{data[0].med}}">
+    <input type="submit" value="Submit">
+</form>
+
+{%endif%}
+{% endblock %}

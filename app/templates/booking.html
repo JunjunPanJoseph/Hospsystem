@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Booking</h2>
+{%if errorMsg != []%}
+    {%for error in errorMsg%}
+        <p>{{error}}</p>
+    {%endfor%}
+{%else%}
+<p>Center name: {{center_data.name}}</p>
+<p>Provider name: {{provider_data.email}}</p>
+
+{%for bmsg in bookingMsg%}
+    <p>{{bmsg}}</p>
+{%endfor%}
+<form method="POST">
+    Start time:<input type="text" name="start_time", value = "01-01-2000 00:00:00">
+    <br>
+    End time: <input type="text" name="end_time", value = "01-01-2000 00:00:00">
+    <br>
+    Reason:<input type="text" name="reason", value = "">
+    <br>
+    <input type="submit" value="Submit">
+</form>
+{%endif%}
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Rating</h2>
+{%if success == TRUE%}
+    <p>Update rating success</p>
+{%endif%}
+{%if success == False%}
+    <p>Update rating fail</p>
+{%endif%}
+<form method="POST">
+    Curr rating: {{currRating}}
+    New rating:<input type="text" name="rating", placeholder = "Enter number">
+    <br>
+
+    <input type="submit" value="Submit">
+</form>
+{% endblock %}

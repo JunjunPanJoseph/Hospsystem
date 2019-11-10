@@ -1,0 +1,20 @@
+<head>
+
+    {% block head %}
+
+    <h1>Hello, {{current_user.authority}} {{current_user.name}}</h1> 
+    <p><a href = "/profile">profile</a></p>
+    <p><a href = "/logout">Logout</a></p>
+    <p><a href = "/{{current_user.authority}}">main page</a></p>
+    {% endblock %}
+
+</head>
+
+<body>
+    <div id="content" style="background: #fff;width: 960px;margin:0 auto;">
+        {% block content%}
+        {% endblock %}
+    </div>
+</body>
+
+

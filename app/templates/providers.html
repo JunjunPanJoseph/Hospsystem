@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+{% if p != None%}
+
+<table border="1">
+    <tr>
+        <td>Email</td><td>Name</td><td>Phone</td><td>Provider Number</td><td>Type</td><td>Rating</td>
+    </tr>
+
+    <tr>
+        <td>{{p.email}}</td>
+        <td>{{p.name}}</td>
+        <td>{{p.phone}}</td>
+        <td>{{p.providerNumber}}</td>
+        <td>{{p.type}}</td>
+            
+        <td>{{rating.get_rating(provider = p.email)}}</td>
+        <td><a href = "/rating/provider/{{p.email}}">Rating it</a> </td>
+    </tr>
+</table>
+
+<h2>list of hospitals</h2>
+<table border="1">
+    <tr>
+        <td>Type</td><td>Abn</td><td>Name</td><td>phone number</td><td>Location</td><td>Rating</td><td>working time</td><td>book</td>
+    </tr>
+{% for center_data in c %}
+    <tr>
+        <td>{{center_data.type}}</td>
+        <td>{{center_data.Abn}}</td>
+        <td>{{center_data.name}}</td>
+        <td>{{center_data.phone}}</td>
+        <td>{{center_data.location}}</td>
+        <td>{{rating.get_rating(centre = center_data.name)}}</td>
+        <td>{{get_workingTime(p.email, center_data.name)[0].time()}} - {{get_workingTime(p.email, center_data.name)[1].time()}}</td>
+        <td><a href = "/book/{{p.email}}/{{center_data.name}}">book</a> </td>
+    </tr>
+{% endfor %}
+</table>
+{%else%}
+<p>Error: None provider data</p>
+{%endif%}
+{% endblock %}
+
